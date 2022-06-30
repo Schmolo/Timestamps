@@ -8,7 +8,7 @@ website: schmolo.github.io
 commands:
   msg:
     description: Whispers to your given Player.
-    usage: /<command> <PlayerName> <Message>
+    usage: /<command> <player> <message>
     aliases: [w, whisper, tell]
 
   say:
