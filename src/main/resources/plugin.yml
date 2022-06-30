@@ -1,0 +1,16 @@
+name: Timestamps
+version: '${project.version}'
+main: io.github.schmolo.timestamps.Timestamps
+api-version: 1.18
+load: STARTUP
+authors: [ Schmolo, PolyLogic ]
+website: schmolo.github.io
+commands:
+  msg:
+    description: Whispers to your given Player.
+    usage: /<command> <PlayerName> <Message>
+    aliases: [w, whisper, tell]
+
+  say:
+    description: Say something in the Chat.
+    usage: /<command> <message>
