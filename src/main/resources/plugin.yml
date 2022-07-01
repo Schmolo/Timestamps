@@ -14,3 +14,4 @@ commands:
   say:
     description: Say something in the Chat.
     usage: /<command> <message>
+    aliases: [speak, spell]
