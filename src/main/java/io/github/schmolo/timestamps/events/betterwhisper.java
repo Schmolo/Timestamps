@@ -44,20 +44,20 @@ public class betterwhisper implements TabExecutor {
             if (!(sender instanceof Player)) {
 
                 String targetmessage = "[SERVER] whispers: " + msg;
-                target.sendMessage(time + ChatColor.of("#FF8000") + targetmessage );
-                sender.sendMessage(time + ChatColor.of("#FF8000") + "To [" +  ChatColor.of("#FF8000") + target.getName() + ChatColor.of("#FF8000") + "]: " + ChatColor.of("#FF8000") + msg);
+                target.sendMessage(time + ChatColor.of("#FF7EFF") + targetmessage );
+                sender.sendMessage(time + ChatColor.of("#FF7EFF") + "To [" +  ChatColor.of("#FF7EFF") + target.getName() + ChatColor.of("#FF7EFF") + "]: " + ChatColor.of("#FF7EFF") + msg);
 
             } else {
 
                 TextComponent sendercomp = new TextComponent("[" + sender.getName() + "]");
                 sendercomp.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/w " + sender.getName() + " "));
                 sendercomp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                        new ComponentBuilder("Click here to Answer!").color(ChatColor.of("#FF8000")).italic(true).create()));
+                        new ComponentBuilder("Click here to Answer!").color(ChatColor.of("#FF7EFF")).italic(true).create()));
 
                 whispersmsg = " whispers: " + msg;
 
                 sendercomp.addExtra(whispersmsg);
-                sendercomp.setColor(ChatColor.of("#FF8000"));
+                sendercomp.setColor(ChatColor.of("#FF7EFF"));
 
                 messagetarget.addExtra(sendercomp);
             }
@@ -65,12 +65,12 @@ public class betterwhisper implements TabExecutor {
             TextComponent targetcomp = new TextComponent("To [" + target.getName() + "]");
             targetcomp.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/w " + target.getName() + " "));
             targetcomp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                    new ComponentBuilder("Click here to Answer!").color(ChatColor.of("#FF8000")).italic(true).create()));
+                    new ComponentBuilder("Click here to Answer!").color(ChatColor.of("#FF7EFF")).italic(true).create()));
 
             String tomsg = ": " + msg;
 
             targetcomp.addExtra(tomsg);
-            targetcomp.setColor(ChatColor.of("#FF8000"));
+            targetcomp.setColor(ChatColor.of("#FF7EFF"));
 
             messagesender.addExtra(targetcomp);
 
