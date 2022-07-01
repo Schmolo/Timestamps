@@ -6,7 +6,7 @@
 
     <groupId>io.github.schmolo</groupId>
     <artifactId>timestamps</artifactId>
-    <version>1.18.2-0.0.1</version>
+    <version>1.18.2</version>
     <packaging>jar</packaging>
 
     <name>Timestamps</name>
