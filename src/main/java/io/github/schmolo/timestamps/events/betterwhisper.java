@@ -97,9 +97,9 @@ public class betterwhisper implements TabExecutor {
 
                 Bukkit.getServer().getOnlinePlayers().toArray(players);
 
-                for (int i = 0; i < players.length; i++) {
+                for (Player player : players) {
 
-                    playerNames.add(players[i].getName());
+                    playerNames.add(player.getName());
 
                 }
 
