@@ -32,7 +32,7 @@ public class playerchatevent implements Listener {
 
         if(event.getPlayer().getName().equals("PolyLogic"))
         {
-            playername = ChatColor.of("#cd006a") + "Pol" + ChatColor.of("#954c8f") + "yLo" + ChatColor.of("#09329f") + "gic";
+            playername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
         }
 
 
