@@ -36,7 +36,6 @@ public class playerchatevent implements Listener {
         }
 
 
-
         String colon = ChatColor.WHITE + ": ";
 
         String message = ChatColor.WHITE + event.getMessage();
