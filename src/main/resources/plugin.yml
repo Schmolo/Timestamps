@@ -1,7 +1,7 @@
 name: Timestamps
 version: '${project.version}'
 main: io.github.schmolo.timestamps.Timestamps
-api-version: 1.18
+api-version: 1.19
 load: STARTUP
 authors: [ Schmolo, PolyLogic ]
 website: schmolo.github.io
