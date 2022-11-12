@@ -28,3 +28,8 @@ public final class Timestamps extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "[TimeStamps]: disabled");
     }
 }
+
+/*
+    TODO: Implement Config file system
+    TODO: Add way to edit colors for Player names ( not only chat )
+*/
