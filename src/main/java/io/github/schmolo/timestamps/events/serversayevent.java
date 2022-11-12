@@ -36,11 +36,15 @@ public class serversayevent  implements TabExecutor {
 
                 sendername = ChatColor.RED + "[SERVER]";
 
+            } else if (sender.getName().equals("PolyLogic")) {
+
+                sendername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
+
             } else if (sender.isOp()) {
 
                 sendername = ChatColor.RED + sender.getName();
 
-            }else {
+            } else {
 
                 sendername = ChatColor.WHITE + sender.getName();
             }
