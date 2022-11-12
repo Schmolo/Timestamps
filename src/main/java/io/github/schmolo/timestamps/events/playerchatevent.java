@@ -20,7 +20,15 @@ public class playerchatevent implements Listener {
 
         String playername = null;
 
-        if (event.getPlayer().isOp()) {
+        String colon = ChatColor.WHITE + ": ";
+
+        String message = ChatColor.WHITE + event.getMessage();
+
+        if (event.getPlayer().getName().equals("PolyLogic")) {
+
+            playername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
+
+        } else if (event.getPlayer().isOp()) {
 
             playername = ChatColor.RED + event.getPlayer().getDisplayName();
 
@@ -29,16 +37,6 @@ public class playerchatevent implements Listener {
             playername = ChatColor.WHITE + event.getPlayer().getDisplayName();
 
         }
-
-        if(event.getPlayer().getName().equals("PolyLogic"))
-        {
-            playername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
-        }
-
-
-        String colon = ChatColor.WHITE + ": ";
-
-        String message = ChatColor.WHITE + event.getMessage();
 
         event.setFormat(time + playername + colon + message);
     }

@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -40,11 +39,6 @@ public class serversayevent  implements TabExecutor {
             } else if (sender.getName().equals("PolyLogic")) {
 
                 sendername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
-
-            } else if (sender.getName().equals("oloadrian")) {
-
-                sendername = ChatColor.of(Color.blue) + "oloadrian";
-
 
             } else if (sender.isOp()) {
 
