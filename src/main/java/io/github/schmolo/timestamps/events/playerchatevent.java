@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,6 +28,10 @@ public class playerchatevent implements Listener {
         if (event.getPlayer().getName().equals("PolyLogic")) {
 
             playername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
+
+        } else if (event.getPlayer().getName().equals("oloadrian")) {
+
+            playername = ChatColor.of(Color.blue) + "oloadrian";
 
         } else if (event.getPlayer().isOp()) {
 
