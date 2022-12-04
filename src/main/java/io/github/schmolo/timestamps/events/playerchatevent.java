@@ -1,11 +1,13 @@
 package io.github.schmolo.timestamps.events;
 
+import io.github.schmolo.timestamps.PlayerNameHelper;
+import jdk.internal.access.JavaLangInvokeAccess;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,11 +15,15 @@ public class playerchatevent implements Listener {
 
     @EventHandler
     public void chatFormat(AsyncPlayerChatEvent event){
+
+        PlayerNameHelper playerNameHelper = PlayerNameHelper.getNamesfromConfig();
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formatDateTime = now.format(formatter);
 
         String time = "[" + formatDateTime + "] ";
+
 
         String playername = null;
 
@@ -25,15 +31,11 @@ public class playerchatevent implements Listener {
 
         String message = ChatColor.WHITE + event.getMessage();
 
-        if (event.getPlayer().getName().equals("PolyLogic")) {
 
-            playername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
+        String playeruuid = event.getPlayer().getUniqueId().toString();
 
-        } else if (event.getPlayer().getName().equals("oloadrian")) {
 
-            playername = ChatColor.of(Color.blue) + "oloadrian";
-
-        } else if (event.getPlayer().isOp()) {
+        if (event.getPlayer().isOp()) {
 
             playername = ChatColor.RED + event.getPlayer().getDisplayName();
 
@@ -41,6 +43,11 @@ public class playerchatevent implements Listener {
 
             playername = ChatColor.WHITE + event.getPlayer().getDisplayName();
 
+        }
+
+
+        if(playerNameHelper.getName(playeruuid) != null) {
+            playername = playerNameHelper.getName(playeruuid);
         }
 
         event.setFormat(time + playername + colon + message);
