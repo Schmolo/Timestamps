@@ -1,5 +1,6 @@
 package io.github.schmolo.timestamps.events;
 
+import io.github.schmolo.timestamps.PlayerNameHelper;
 import org.bukkit.Bukkit;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -21,6 +22,8 @@ public class serversayevent  implements TabExecutor {
 
         if (cmd.getName().equalsIgnoreCase("say")) {
 
+            PlayerNameHelper playerNameHelper = PlayerNameHelper.getNamesfromConfig();
+
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
             String formatDateTime = now.format(formatter);
@@ -37,22 +40,22 @@ public class serversayevent  implements TabExecutor {
 
                 sendername = ChatColor.RED + "[SERVER]";
 
-            } else if (sender.getName().equals("PolyLogic")) {
-
-                sendername = ChatColor.of("#d4006e") + "Pol" + ChatColor.of("#9b4c94") + "yLo" + ChatColor.of("#0931a5") + "gic";
-
-            } else if (sender.getName().equals("oloadrian")) {
-
-                sendername = ChatColor.of(Color.blue) + "oloadrian";
-
-
             } else if (sender.isOp()) {
 
                 sendername = ChatColor.RED + sender.getName();
 
             } else {
 
-                sendername = ChatColor.WHITE + sender.getName();
+                Player player = (Player) sender;
+
+                // Fix i think
+                if(playerNameHelper.getName(player.getUniqueId().toString()) != null) {
+                    sendername = playerNameHelper.getName(player.getUniqueId().toString());
+                } else {
+                    sendername = ChatColor.WHITE + sender.getName();
+                }
+
+
             }
 
             Bukkit.broadcastMessage(time + sendername + colon +  msg);

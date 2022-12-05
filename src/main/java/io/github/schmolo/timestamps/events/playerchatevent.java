@@ -1,7 +1,6 @@
 package io.github.schmolo.timestamps.events;
 
 import io.github.schmolo.timestamps.PlayerNameHelper;
-import jdk.internal.access.JavaLangInvokeAccess;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -50,6 +49,8 @@ public class playerchatevent implements Listener {
             playername = playerNameHelper.getName(playeruuid);
         }
 
-        event.setFormat(time + playername + colon + message);
+        //event.setFormat(time + playername + colon + message);
+        event.setCancelled(true);
+        Bukkit.broadcastMessage(time + playername + colon + message);
     }
 }

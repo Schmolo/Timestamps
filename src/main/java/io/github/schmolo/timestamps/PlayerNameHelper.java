@@ -10,6 +10,10 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.nodes.Tag;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
 
@@ -22,8 +26,12 @@ public class PlayerNameHelper {
     // and that just spits out the correct name for that Person
 
 
+
     // This is for the Singleton Pattern
     // so that only one list of Player Names can exist at one time
+
+    // The field must be declared volatile so that double check lock would work
+    // correctly.
     private static volatile PlayerNameHelper instance;
     public static PlayerNameHelper getInstance() {
         // The approach taken here is called double-checked locking (DCL). It
@@ -55,9 +63,25 @@ public class PlayerNameHelper {
 
     }
 
+    private static String convertInputStreamToString(InputStream inputStream)
+            throws IOException {
 
+        final char[] buffer = new char[8192];
+        final StringBuilder result = new StringBuilder();
 
-    // Gets the names from the Config and assigns them
+        // InputStream -> Reader
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+            int charsRead;
+            while ((charsRead = reader.read(buffer, 0, buffer.length)) > 0) {
+                result.append(buffer, 0, charsRead);
+            }
+        }
+
+        return result.toString();
+
+    }
+
+    // Get the names from the Config and assign them
     public static PlayerNameHelper getNamesfromConfig() {
 
         // TODO: Move this code to /nick once nick is done
@@ -102,7 +126,7 @@ public class PlayerNameHelper {
         // This is for saving the yaml file
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(new File("plugins\\timestamps\\bruh.yml"));
+            writer = new PrintWriter(new File("plugins/timestamps/test.yml"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -138,18 +162,43 @@ public class PlayerNameHelper {
 
         // Reads the playernames.yml
         InputStream inputStream = null;
+
         try {
-            inputStream = new FileInputStream(new File("plugins\\timestamps\\playernames.yml"));
+            Files.createDirectories(Paths.get("plugins/timestamps"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        File yourFile = new File("plugins/timestamps/playernames.yml");
+        try {
+            yourFile.createNewFile();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            inputStream = new FileInputStream(new File("plugins/timestamps/playernames.yml"));
+
         } catch (FileNotFoundException e) {
+
+        }
+
+        // Check if the File is Empty
+        String nice = "";
+        try {
+            nice = convertInputStreamToString(inputStream);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Reads the Yaml into a List<PlayerNameConfig>
-        Yaml yaml = new Yaml(new Constructor(List.class));
-        List<LinkedHashMap<String, Object>> data = yaml.load(inputStream);
+        if(nice != "") {
 
-        // Adds the data into the playerNameHelper class
-        playerNameHelper.add(data);
+            // Reads the Yaml into a List<PlayerNameConfig>
+            Yaml yaml = new Yaml(new Constructor(List.class));
+            List<LinkedHashMap<String, Object>> data = yaml.load(inputStream);
+
+            // Adds the data into the playerNameHelper class
+            playerNameHelper.add(data);
+        }
 
         return playerNameHelper;
     }
@@ -166,7 +215,7 @@ public class PlayerNameHelper {
         }
 
 
-
+        // TODO: Maybe rewrite this to be more class based so its only one place to modify
         for (PlayerNameConfig p : newNameConfigs) {
             String uuid = p.uuid;
             if(p.color != null) {
@@ -186,115 +235,9 @@ public class PlayerNameHelper {
     }
 
     public String getName(String uuid) {
+        if(playernames.isEmpty()) return null;
         return playernames.get(uuid).getName();
     }
 }
 
-class ColoredName {
-    String name;
 
-    HashMap<String, String> customHexCodes;
-
-
-
-    public ColoredName(String name) {
-        this.name = name;
-        this.customHexCodes = new HashMap<>();
-        customHexCodes.put("black","#000000");
-        customHexCodes.put("dark_blue","#0000aa");
-        customHexCodes.put("dark_green","#00aa00");
-        customHexCodes.put("dark_aqua","#00aaaa");
-        customHexCodes.put("dark_red","#aa0000");
-        customHexCodes.put("dark_purple","#aa00aa");
-        customHexCodes.put("gold","#ffaa00");
-        customHexCodes.put("gray","#aaaaaa");
-        customHexCodes.put("dark_gray","#555555");
-        customHexCodes.put("blue","#5555ff");
-        customHexCodes.put("green","#55ff55");
-        customHexCodes.put("aqua","#55ffff");
-        customHexCodes.put("red","#ff5555");
-        customHexCodes.put("light_purple","#ff55ff");
-        customHexCodes.put("yellow","#ffff55");
-        customHexCodes.put("white","ffffff");
-
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    // Some Helper Functions
-    public Color fromHexString(String hex) {
-        int rgb = Integer.parseInt(hex.substring(1), 16);
-
-        return Color.fromRGB(rgb);
-    }
-
-    public String toHexString(Color c) {
-        return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
-    }
-
-    public String applyGradientToName(String name, Color from, Color to) {
-        String gradientName = "";
-
-        for (int i = 0; i < name.length(); i++) {
-            float p = (float)i/name.length();
-            int R = (int) (to.getRed()   * p + from.getRed()   * (1 - p));
-            int B = (int) (to.getBlue()  * p + from.getBlue()  * (1 - p));
-            int G = (int) (to.getGreen() * p + from.getGreen() * (1 - p));
-
-            Color c = Color.fromRGB(R, G, B);
-            gradientName += ChatColor.of(toHexString(c)) + Character.toString(name.toCharArray()[i]);
-        }
-
-        return gradientName;
-    }
-}
-
-
-class SegmentedName extends ColoredName {
-
-    public SegmentedName(String name, List<Segment> segments) {
-        super(name);
-        StringBuilder sum = new StringBuilder();
-        for (Segment s : segments) {
-            sum.append(ChatColor.of(s.color)).append(s.name);
-        }
-
-        this.name = sum.toString();
-    }
-}
-
-class GradientName extends ColoredName {
-
-    public GradientName(String name, Gradient gradient) {
-        super(name);
-        Color from = null;
-        Color to = null;
-
-        // TODO: Add the ability to type in normal color names
-
-        if(gradient.from.contains("#")) {
-            from = fromHexString(gradient.from);
-        } else {
-            from = fromHexString(customHexCodes.get(gradient.from));
-        }
-
-        if(gradient.to.contains("#")) {
-            to = fromHexString(gradient.to);
-        } else {
-            to = fromHexString(customHexCodes.get(gradient.to));
-        }
-
-        this.name = applyGradientToName(name, from, to);
-
-    }
-}
-
-class SingleName extends ColoredName {
-
-    public SingleName(String name, String color) {
-        super(name);
-        this.name = ChatColor.of(color) + this.name;
-    }
-}
