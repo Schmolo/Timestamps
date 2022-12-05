@@ -35,5 +35,17 @@ public class PlayerNameConfig {
     }
 
 
+    public ColoredName getColoredName() {
+
+        if(this.color != null) {
+            return new SingleName(this.name, this.color);
+        } else if(this.gradient != null) {
+            return new GradientName(this.name, this.gradient);
+        } else if (this.segments != null) {
+            return new SegmentedName(this.name, this.segments);
+        }
+
+        return null;
+    }
 }
 

@@ -16,6 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class PlayerNameHelper {
     // This is a helper for the usage of colored names
@@ -63,23 +66,6 @@ public class PlayerNameHelper {
 
     }
 
-    private static String convertInputStreamToString(InputStream inputStream)
-            throws IOException {
-
-        final char[] buffer = new char[8192];
-        final StringBuilder result = new StringBuilder();
-
-        // InputStream -> Reader
-        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-            int charsRead;
-            while ((charsRead = reader.read(buffer, 0, buffer.length)) > 0) {
-                result.append(buffer, 0, charsRead);
-            }
-        }
-
-        return result.toString();
-
-    }
 
     // Get the names from the Config and assign them
     public static PlayerNameHelper getNamesfromConfig() {
@@ -183,19 +169,23 @@ public class PlayerNameHelper {
         }
 
         // Check if the File is Empty
-        String nice = "";
+        BufferedReader buf = null;
         try {
-            nice = convertInputStreamToString(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            buf = new BufferedReader(new FileReader("plugins/timestamps/playernames.yml"));
+        } catch (FileNotFoundException e) { }
+
+        String nice = buf.lines().collect(Collectors.joining());
+
 
         if(nice != "") {
 
+            getServer().getConsoleSender().sendMessage(nice);
+            getServer().getConsoleSender().sendMessage("Trying to load yaml");
             // Reads the Yaml into a List<PlayerNameConfig>
             Yaml yaml = new Yaml(new Constructor(List.class));
             List<LinkedHashMap<String, Object>> data = yaml.load(inputStream);
 
+            getServer().getConsoleSender().sendMessage("Success");
             // Adds the data into the playerNameHelper class
             playerNameHelper.add(data);
         }
@@ -214,24 +204,22 @@ public class PlayerNameHelper {
             newNameConfigs.add(p);
         }
 
-
-        // TODO: Maybe rewrite this to be more class based so its only one place to modify
         for (PlayerNameConfig p : newNameConfigs) {
+            getServer().getConsoleSender().sendMessage("PlayerNameConfig is: " + p.toString());
+
             String uuid = p.uuid;
-            if(p.color != null) {
-                addName(uuid, new SingleName(p.name, p.color));
-            } else if(p.gradient != null) {
-                addName(uuid, new GradientName(p.name, p.gradient));
-            } else if (p.segments != null) {
-                addName(uuid, new SegmentedName(p.name, p.segments));
-            }
+
+            addName(uuid, p.getColoredName());
+
         }
     }
 
     private HashMap<String, ColoredName> playernames = new HashMap<>();
 
     public void addName(String player, ColoredName name) {
-        playernames.put(player, name);
+        if (name != null) {
+            playernames.put(player, name);
+        }
     }
 
     public String getName(String uuid) {
