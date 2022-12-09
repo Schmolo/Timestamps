@@ -5,16 +5,13 @@ import org.bukkit.Color;
 
 import java.util.HashMap;
 
-// A Base Class only used of Polymorphism and helper functions
+// A Base Class only used for Polymorphism and helper functions
 public class ColoredName {
     String name;
 
-    HashMap<String, String> customHexCodes;
-
-
-    public ColoredName(String name) {
-        this.name = name;
-        this.customHexCodes = new HashMap<>();
+    public static HashMap<String, String> customHexCodes;
+    static {
+        customHexCodes = new HashMap<>();
         customHexCodes.put("black", "#000000");
         customHexCodes.put("dark_blue", "#0000aa");
         customHexCodes.put("dark_green", "#00aa00");
@@ -31,6 +28,11 @@ public class ColoredName {
         customHexCodes.put("light_purple", "#ff55ff");
         customHexCodes.put("yellow", "#ffff55");
         customHexCodes.put("white", "ffffff");
+    }
+
+
+    public ColoredName(String name) {
+        this.name = name;
 
     }
 
