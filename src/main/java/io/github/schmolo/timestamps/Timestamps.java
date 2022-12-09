@@ -1,6 +1,7 @@
 package io.github.schmolo.timestamps;
 
 import io.github.schmolo.timestamps.events.betterwhisper;
+import io.github.schmolo.timestamps.events.chatcolor;
 import io.github.schmolo.timestamps.events.playerchatevent;
 import io.github.schmolo.timestamps.events.serversayevent;
 import net.md_5.bungee.api.ChatColor;
@@ -36,6 +37,8 @@ public final class Timestamps extends JavaPlugin {
         getCommand("say").setExecutor(new serversayevent());
 
         getCommand("msg").setExecutor(new betterwhisper());
+
+        this.getCommand("chatcolor").setExecutor(new chatcolor());
 
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[TimeStamps]: enabled");
         if(getConfig().getBoolean("debug_mode")) {
