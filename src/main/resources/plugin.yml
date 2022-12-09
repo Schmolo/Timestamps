@@ -14,3 +14,7 @@ commands:
   say:
     description: Say something in the Chat.
     usage: /<command> <message>
+
+  chatcolor:
+    description: Change the Color of you Name
+    usage: /<command> <[static, gradient, segmented]> <color, starting_color or number_segments> <end_color or color_for_segment> <...>

@@ -1,10 +1,13 @@
 package io.github.schmolo.timestamps;
 
 import io.github.schmolo.timestamps.events.betterwhisper;
+import io.github.schmolo.timestamps.events.chatcolor;
 import io.github.schmolo.timestamps.events.playerchatevent;
 import io.github.schmolo.timestamps.events.serversayevent;
 import net.md_5.bungee.api.ChatColor;
+
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public final class Timestamps extends JavaPlugin {
 
@@ -18,7 +21,9 @@ public final class Timestamps extends JavaPlugin {
 
         getCommand("msg").setExecutor(new betterwhisper());
 
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[TimeStamps]: enabled");
+        this.getCommand("chatcolor").setExecutor(new chatcolor());
+
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[TimeStamps v0.0.69]: enabled");
     }
 
     @Override
