@@ -31,6 +31,10 @@ public final class Timestamps extends JavaPlugin {
 
         TimsLib.setConfig(getConfig().getBoolean("debug_mode"));
 
+        // Its unused and just there to load the Playernames Hashmap from the config
+        PlayerNameHelper.getNamesfromConfig();
+
+
 
         getServer().getPluginManager().registerEvents(new playerchatevent(), this);
 
