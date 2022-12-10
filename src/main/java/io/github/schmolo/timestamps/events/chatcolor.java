@@ -23,14 +23,14 @@ public class chatcolor implements TabExecutor {
 
                 Player player = (Player) sender;
                 String playername = player.getName();
-                UUID uuid = player.getUniqueId();
+                String uuid = player.getUniqueId().toString();
                 // /chatcolor [Static, Gradient, Segmentet] [Static{color}, Gradient{start_color end_color}, Segmentet{Number_of_Segments for Number_of_Segments Color}]
 
                 if (args[0].equalsIgnoreCase("static")) {
                     // /chatcolor static color
                     SingleName singleName = new SingleName(playername, args[1]);
                     // save to yml
-                    playerNameHelper.addName(playername, singleName);
+                    playerNameHelper.addName(uuid, singleName);
 
 
                 } else if (args[0].equalsIgnoreCase("gradient")) {
@@ -38,7 +38,7 @@ public class chatcolor implements TabExecutor {
                     Gradient gradient = new Gradient(args[1], args[2]);
                     GradientName gradientName = new GradientName(playername, gradient);
 
-                    playerNameHelper.addName(playername, gradientName);
+                    playerNameHelper.addName(uuid, gradientName);
 
 
                 } else if (args[0].equalsIgnoreCase("segment")) {
@@ -54,7 +54,7 @@ public class chatcolor implements TabExecutor {
                         segments.add(segment);
                     }
                     SegmentedName segmentedName = new SegmentedName(playername, segments);
-                    playerNameHelper.addName(playername, segmentedName);
+                    playerNameHelper.addName(uuid, segmentedName);
                 }
                 playerNameHelper.updateNames();
             }
