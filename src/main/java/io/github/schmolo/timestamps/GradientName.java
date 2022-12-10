@@ -13,8 +13,6 @@ public class GradientName extends ColoredName {
         Color to;
 
 
-        // TODO: Add the ability to type in normal color names
-
         if (gradient.from.contains("#")) {
             from = fromHexString(gradient.from);
         } else {
