@@ -40,10 +40,6 @@ public class serversayevent  implements TabExecutor {
 
                 sendername = ChatColor.RED + "[SERVER]";
 
-            } else if (sender.isOp()) {
-
-                sendername = ChatColor.RED + sender.getName();
-
             } else {
 
                 Player player = (Player) sender;

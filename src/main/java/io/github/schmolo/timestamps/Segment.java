@@ -1,9 +1,5 @@
 package io.github.schmolo.timestamps;
 
-import org.bukkit.Color;
-
-import java.util.List;
-
 public class Segment {
     public String name;
     public String color;
@@ -19,5 +15,11 @@ public class Segment {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

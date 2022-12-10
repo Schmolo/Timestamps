@@ -34,6 +34,22 @@ public class PlayerNameConfig {
         this.color = color;
     }
 
+    public void bruhColoredName(ColoredName bruh) {
+        if (bruh.getClass() == SingleName.class) {
+            SingleName yeah = (SingleName) bruh;
+            setColor(yeah.color);
+
+        } else if (bruh.getClass() == GradientName.class) {
+            GradientName yeah = (GradientName) bruh;
+            setGradient(yeah.gradient);
+
+        } else if (bruh.getClass() == SegmentedName.class) {
+            SegmentedName yeah = (SegmentedName) bruh;
+            setSegments(yeah.segments);
+
+        }
+    }
+
 
     public ColoredName getColoredName() {
 
@@ -46,6 +62,17 @@ public class PlayerNameConfig {
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerNameConfig{" +
+                "uuid='" + uuid + '\'' +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", gradient=" + gradient +
+                ", segments=" + segments +
+                '}';
     }
 }
 

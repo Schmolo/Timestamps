@@ -1,7 +1,5 @@
 package io.github.schmolo.timestamps;
 
-import org.bukkit.Color;
-
 public class Gradient {
     public String from;
     public String to;
@@ -12,4 +10,12 @@ public class Gradient {
     }
 
     public Gradient() {}
+
+    @Override
+    public String toString() {
+        return "Gradient{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                '}';
+    }
 }

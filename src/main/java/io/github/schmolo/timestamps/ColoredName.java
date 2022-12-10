@@ -36,6 +36,7 @@ public class ColoredName {
 
     }
 
+
     public String getName() {
         return this.name;
     }

@@ -4,10 +4,14 @@ import org.bukkit.Color;
 
 public class GradientName extends ColoredName {
 
+    public Gradient gradient;
+
     public GradientName(String name, Gradient gradient) {
         super(name);
-        Color from = null;
-        Color to = null;
+        this.gradient = gradient;
+        Color from;
+        Color to;
+
 
         // TODO: Add the ability to type in normal color names
 

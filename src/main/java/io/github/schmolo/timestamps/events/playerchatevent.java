@@ -34,15 +34,7 @@ public class playerchatevent implements Listener {
         String playeruuid = event.getPlayer().getUniqueId().toString();
 
 
-        if (event.getPlayer().isOp()) {
-
-            playername = ChatColor.RED + event.getPlayer().getDisplayName();
-
-        } else {
-
-            playername = ChatColor.WHITE + event.getPlayer().getDisplayName();
-
-        }
+        playername = ChatColor.WHITE + event.getPlayer().getDisplayName();
 
 
         if(playerNameHelper.getName(playeruuid) != null) {
