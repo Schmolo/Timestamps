@@ -27,7 +27,8 @@ public class ColoredName {
         customHexCodes.put("red", "#ff5555");
         customHexCodes.put("light_purple", "#ff55ff");
         customHexCodes.put("yellow", "#ffff55");
-        customHexCodes.put("white", "ffffff");
+        customHexCodes.put("white", "#ffffff");
+        customHexCodes.put("indigo", "#4000ff");
     }
 
 

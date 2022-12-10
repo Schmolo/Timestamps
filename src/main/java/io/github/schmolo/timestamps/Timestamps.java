@@ -57,5 +57,7 @@ public final class Timestamps extends JavaPlugin {
 }
 
 /*
+    TODO: Change the onTab of /chatcolor behavior to create errors for wrong inputs
+    TODO: Add and change some of the colors in the customHexCodes Hashmap
     TODO: Add way to edit colors for Player names ( not only chat )
 */

@@ -1,5 +1,6 @@
 package io.github.schmolo.timestamps;
 
+
 public class Segment {
     public String name;
     public String color;
