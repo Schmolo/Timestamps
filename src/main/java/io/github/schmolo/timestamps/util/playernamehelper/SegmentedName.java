@@ -1,11 +1,10 @@
-package io.github.schmolo.timestamps;
+package io.github.schmolo.timestamps.util.playernamehelper;
 
 import net.md_5.bungee.api.ChatColor;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static io.github.schmolo.timestamps.TimsLib.PrintDebug;
+import static io.github.schmolo.timestamps.util.TimsLib.PrintDebug;
 
 public class SegmentedName extends ColoredName {
 

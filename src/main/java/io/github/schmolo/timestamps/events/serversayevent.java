@@ -1,6 +1,6 @@
 package io.github.schmolo.timestamps.events;
 
-import io.github.schmolo.timestamps.PlayerNameHelper;
+import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import org.bukkit.Bukkit;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

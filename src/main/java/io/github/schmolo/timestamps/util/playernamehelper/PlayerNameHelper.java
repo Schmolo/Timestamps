@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps;
+package io.github.schmolo.timestamps.util.playernamehelper;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static io.github.schmolo.timestamps.TimsLib.PrintDebug;
+import static io.github.schmolo.timestamps.util.TimsLib.PrintDebug;
 
 
 public class PlayerNameHelper {
@@ -65,13 +65,12 @@ public class PlayerNameHelper {
 
     // Get the names from the Config and assign them
     public static PlayerNameHelper getNamesfromConfig() {
-        // Creates a Temp PlayerNameHelper
+        // Gets a PlayerNameHelper
         PlayerNameHelper playerNameHelper = PlayerNameHelper.getInstance();
-
-        // Reads the playernames.yml
 
         String workingDir = Bukkit.getServer().getPluginManager().getPlugin("Timestamps").getDataFolder() + "/";
 
+        // Reads the playernames.yml
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(new File(workingDir + "playernames.yml"));
@@ -85,10 +84,10 @@ public class PlayerNameHelper {
 
         String nice = buf.lines().collect(Collectors.joining());
 
-
+        // If the file is not empty
         if(nice != "") {
 
-            PrintDebug("Trying to load yaml");
+            PrintDebug("Trying to load playernames.yml");
             // Reads the Yaml into a List<PlayerNameConfig>
             Yaml yaml = new Yaml(new Constructor(List.class));
             List<LinkedHashMap<String, Object>> data = yaml.load(inputStream);
@@ -123,6 +122,7 @@ public class PlayerNameHelper {
 
         // Building of the List from the ColoredNames Hashmap
         for (String uuid : this.playernames.keySet()) {
+            // The ColoredName of the user
             ColoredName currname = this.playernames.get(uuid);
 
             PlayerNameConfig temp = new PlayerNameConfig();

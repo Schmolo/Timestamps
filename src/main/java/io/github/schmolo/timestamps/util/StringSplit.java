@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps;
+package io.github.schmolo.timestamps.util;
 
 import java.util.ArrayList;
 import java.util.List;

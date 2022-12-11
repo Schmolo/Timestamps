@@ -1,6 +1,8 @@
 package io.github.schmolo.timestamps;
 
 import io.github.schmolo.timestamps.events.*;
+import io.github.schmolo.timestamps.util.TimsLib;
+import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

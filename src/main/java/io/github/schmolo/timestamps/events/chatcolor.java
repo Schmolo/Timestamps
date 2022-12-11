@@ -1,6 +1,7 @@
 package io.github.schmolo.timestamps.events;
 
-import io.github.schmolo.timestamps.*;
+import io.github.schmolo.timestamps.util.StringSplit;
+import io.github.schmolo.timestamps.util.playernamehelper.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -8,7 +9,6 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class chatcolor implements TabExecutor {
 

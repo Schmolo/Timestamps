@@ -1,6 +1,6 @@
 package io.github.schmolo.timestamps.events;
 
-import io.github.schmolo.timestamps.PlayerNameHelper;
+import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

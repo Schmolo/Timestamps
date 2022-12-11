@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps;
+package io.github.schmolo.timestamps.util.playernamehelper;
 
 import org.bukkit.Color;
 

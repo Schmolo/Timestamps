@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps;
+package io.github.schmolo.timestamps.util.playernamehelper;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Color;
