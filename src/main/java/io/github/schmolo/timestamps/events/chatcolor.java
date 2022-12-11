@@ -56,6 +56,8 @@ public class chatcolor implements TabExecutor {
                     playerNameHelper.addName(uuid, segmentedName);
                 }
                 playerNameHelper.updateNames();
+                String newName = playerNameHelper.getName(uuid);
+                player.setPlayerListName(newName);
             }
             return true;
         }

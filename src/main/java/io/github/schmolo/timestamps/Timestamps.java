@@ -1,9 +1,6 @@
 package io.github.schmolo.timestamps;
 
-import io.github.schmolo.timestamps.events.betterwhisper;
-import io.github.schmolo.timestamps.events.chatcolor;
-import io.github.schmolo.timestamps.events.playerchatevent;
-import io.github.schmolo.timestamps.events.serversayevent;
+import io.github.schmolo.timestamps.events.*;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,6 +32,7 @@ public final class Timestamps extends JavaPlugin {
         PlayerNameHelper.getNamesfromConfig();
 
 
+        getServer().getPluginManager().registerEvents(new SetListNameOnJoin(), this);
 
         getServer().getPluginManager().registerEvents(new playerchatevent(), this);
 
