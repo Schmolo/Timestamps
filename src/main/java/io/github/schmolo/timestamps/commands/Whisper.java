@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps.events;
+package io.github.schmolo.timestamps.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class betterwhisper implements TabExecutor {
+public class Whisper implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 

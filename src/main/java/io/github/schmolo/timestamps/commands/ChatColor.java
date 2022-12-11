@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps.events;
+package io.github.schmolo.timestamps.commands;
 
 import io.github.schmolo.timestamps.util.StringSplit;
 import io.github.schmolo.timestamps.util.playernamehelper.*;
@@ -10,12 +10,12 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class chatcolor implements TabExecutor {
+public class ChatColor implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if (cmd.getName().equalsIgnoreCase("chatcolor")) {
+        if (cmd.getName().equalsIgnoreCase("ChatColor")) {
 
             if (sender instanceof Player) {
 
@@ -24,17 +24,17 @@ public class chatcolor implements TabExecutor {
                 Player player = (Player) sender;
                 String playername = player.getName();
                 String uuid = player.getUniqueId().toString();
-                // /chatcolor [Static, Gradient, Segmentet] [Static{color}, Gradient{start_color end_color}, Segmentet{Number_of_Segments for Number_of_Segments Color}]
+                // /ChatColor [Static, Gradient, Segmentet] [Static{color}, Gradient{start_color end_color}, Segmentet{Number_of_Segments for Number_of_Segments Color}]
 
                 if (args[0].equalsIgnoreCase("static")) {
-                    // /chatcolor static color
+                    // /ChatColor static color
                     SingleName singleName = new SingleName(playername, args[1]);
                     // save to yml
                     playerNameHelper.addName(uuid, singleName);
 
 
                 } else if (args[0].equalsIgnoreCase("gradient")) {
-                    // /chatcolor gradient start_color end_color
+                    // /ChatColor gradient start_color end_color
                     Gradient gradient = new Gradient(args[1], args[2]);
                     GradientName gradientName = new GradientName(playername, gradient);
 
@@ -42,7 +42,7 @@ public class chatcolor implements TabExecutor {
 
 
                 } else if (args[0].equalsIgnoreCase("segment")) {
-                    // /chatcolor segment numberofsegments (for numberofsegments color)
+                    // /ChatColor segment numberofsegments (for numberofsegments color)
                     int numberOfSegements = Integer.parseInt(args[1]);
                     List<String> chunks = StringSplit.StringSplit(playername, numberOfSegements);
                     List<Segment> segments = new ArrayList<>();

@@ -10,7 +10,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class playerchatevent implements Listener {
+public class PlayerChatEvent implements Listener {
 
     @EventHandler
     public void chatFormat(AsyncPlayerChatEvent event){

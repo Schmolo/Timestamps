@@ -1,4 +1,4 @@
-package io.github.schmolo.timestamps.events;
+package io.github.schmolo.timestamps.commands;
 
 import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import org.bukkit.Bukkit;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class serversayevent  implements TabExecutor {
+public class SayCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

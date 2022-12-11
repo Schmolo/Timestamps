@@ -1,9 +1,11 @@
 package io.github.schmolo.timestamps;
 
+import io.github.schmolo.timestamps.commands.Whisper;
+import io.github.schmolo.timestamps.commands.ChatColor;
+import io.github.schmolo.timestamps.commands.SayCommand;
 import io.github.schmolo.timestamps.events.*;
 import io.github.schmolo.timestamps.util.TimsLib;
 import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,17 +38,17 @@ public final class Timestamps extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new SetListNameOnJoin(), this);
 
-        getServer().getPluginManager().registerEvents(new playerchatevent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerChatEvent(), this);
 
-        getCommand("say").setExecutor(new serversayevent());
+        getCommand("say").setExecutor(new SayCommand());
 
-        getCommand("msg").setExecutor(new betterwhisper());
+        getCommand("msg").setExecutor(new Whisper());
 
-        this.getCommand("chatcolor").setExecutor(new chatcolor());
+        this.getCommand("ChatColor").setExecutor(new ChatColor());
 
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[TimeStamps]: enabled");
+        getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.GREEN + "[TimeStamps]: enabled");
         if(getConfig().getBoolean("debug_mode")) {
-            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "[TimeStamps] DEBUG MODE: enabled");
+            getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.GOLD + "[TimeStamps] DEBUG MODE: enabled");
         }
     }
 
@@ -54,14 +56,14 @@ public final class Timestamps extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
 
-        getServer().getConsoleSender().sendMessage(ChatColor.RED + "[TimeStamps]: disabled");
+        getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.RED + "[TimeStamps]: disabled");
     }
 
 
 }
 
 /*
-    TODO: Change the onTab of /chatcolor behavior to create errors for wrong inputs
+    TODO: Change the onTab of /ChatColor behavior to create errors for wrong inputs
     TODO: Add and change some of the colors in the customHexCodes Hashmap
     TODO: Add way to edit colors for Player names ( not only chat )
 */
