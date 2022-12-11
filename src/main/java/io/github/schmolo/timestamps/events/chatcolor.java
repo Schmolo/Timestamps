@@ -44,13 +44,12 @@ public class chatcolor implements TabExecutor {
                 } else if (args[0].equalsIgnoreCase("segment")) {
                     // /chatcolor segment numberofsegments (for numberofsegments color)
                     int numberOfSegements = Integer.parseInt(args[1]);
-                    StringSplit stringSplit = new StringSplit();
-                    String[] chunks = stringSplit.StringSplit(playername, numberOfSegements);
+                    List<String> chunks = StringSplit.StringSplit(playername, numberOfSegements);
                     List<Segment> segments = new ArrayList<>();
 
                     for (int i = 0; i != numberOfSegements; i++) {
                         int colorPos = i + 2;
-                        Segment segment = new Segment(chunks[i], args[colorPos]);
+                        Segment segment = new Segment(chunks.get(i), args[colorPos]);
                         segments.add(segment);
                     }
                     SegmentedName segmentedName = new SegmentedName(playername, segments);
@@ -74,7 +73,8 @@ public class chatcolor implements TabExecutor {
             return changeTypes;
         }
         if (args.length > 1) {
-            return (List<String>) ColoredName.customHexCodes.keySet();
+            List<String> keys = new ArrayList<>(ColoredName.customHexCodes.keySet());
+            return keys;
         }
         return null;
     }
