@@ -1,7 +1,7 @@
 package io.github.schmolo.timestamps;
 
+import io.github.schmolo.timestamps.commands.CommandManager;
 import io.github.schmolo.timestamps.commands.Whisper;
-import io.github.schmolo.timestamps.commands.ChatColor;
 import io.github.schmolo.timestamps.commands.SayCommand;
 import io.github.schmolo.timestamps.events.*;
 import io.github.schmolo.timestamps.util.TimsLib;
@@ -44,7 +44,7 @@ public final class Timestamps extends JavaPlugin {
 
         getCommand("msg").setExecutor(new Whisper());
 
-        this.getCommand("ChatColor").setExecutor(new ChatColor());
+        this.getCommand("ts").setExecutor(new CommandManager());
 
         getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.GREEN + "[TimeStamps]: enabled");
         if(getConfig().getBoolean("debug_mode")) {
@@ -58,12 +58,4 @@ public final class Timestamps extends JavaPlugin {
 
         getServer().getConsoleSender().sendMessage(net.md_5.bungee.api.ChatColor.RED + "[TimeStamps]: disabled");
     }
-
-
 }
-
-/*
-    TODO: Change the onTab of /ChatColor behavior to create errors for wrong inputs
-    TODO: Add and change some of the colors in the customHexCodes Hashmap
-    TODO: Add way to edit colors for Player names ( not only chat )
-*/

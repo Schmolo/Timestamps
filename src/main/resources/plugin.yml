@@ -15,6 +15,11 @@ commands:
     description: Say something in the Chat.
     usage: /<command> <message>
 
-  chatcolor:
-    description: Change the Color of you Name
-    usage: /<command> <[static, gradient, segmented]> <color, starting_color or number_segments> <end_color or color_for_segment> <...>
+  ts :
+    chatcolor:
+      description: Change the Color of you Name
+      usage: /<command> chatcolor <[static, gradient, segmented]> <color, starting_color or number_segments> <end_color or color_for_segment> <...>
+
+    prefix:
+      description: Add or Change your Prefix
+      usage: /<command> prefix <Prefix> <color>

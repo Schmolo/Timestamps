@@ -19,8 +19,6 @@ public class SetListNameOnJoin implements Listener {
         PlayerNameHelper playerNameHelper = PlayerNameHelper.getInstance();
 
         String newName = playerNameHelper.getName(String.valueOf(uuid));
-        // player.setPlayerListName(newName);
-
-
+        player.setPlayerListName(newName);
     }
 }

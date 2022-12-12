@@ -49,8 +49,6 @@ public class SayCommand implements TabExecutor {
                 } else {
                     sendername = ChatColor.WHITE + sender.getName();
                 }
-
-
             }
 
             Bukkit.broadcastMessage(time + sendername + colon +  msg);
