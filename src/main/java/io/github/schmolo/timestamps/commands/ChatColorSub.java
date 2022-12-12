@@ -29,17 +29,14 @@ public class ChatColorSub extends SubCommand{
 
         String playername = player.getName();
         String uuid = player.getUniqueId().toString();
-        // /ts chatcolor [Static, Gradient, Segmentet] [Static{color}, Gradient{start_color end_color}, Segmentet{Number_of_Segments for Number_of_Segments Color}]
 
         if (args[1].equalsIgnoreCase("static")) {
-            // /ts chatcolor static color
             SingleName singleName = new SingleName(playername, args[2]);
             // save to yml
             playerNameHelper.addName(uuid, singleName);
 
 
         } else if (args[1].equalsIgnoreCase("gradient")) {
-            // /ts chatcolor gradient start_color end_color
             Gradient gradient = new Gradient(args[2], args[3]);
             GradientName gradientName = new GradientName(playername, gradient);
 
@@ -47,12 +44,11 @@ public class ChatColorSub extends SubCommand{
 
 
         } else if (args[1].equalsIgnoreCase("segment")) {
-            // /ts chatcolor segment numberofsegments (for numberofsegments color)
-            int numberOfSegements = Integer.parseInt(args[2]);
-            List<String> chunks = StringSplit.StringSplit(playername, numberOfSegements);
+            int numberOfSegments = Integer.parseInt(args[2]);
+            List<String> chunks = StringSplit.StringSplit(playername, numberOfSegments);
             List<Segment> segments = new ArrayList<>();
 
-            for (int i = 0; i != numberOfSegements; i++) {
+            for (int i = 0; i != numberOfSegments; i++) {
                 int colorPos = i + 3;
                 Segment segment = new Segment(chunks.get(i), args[colorPos]);
                 segments.add(segment);
@@ -68,7 +64,7 @@ public class ChatColorSub extends SubCommand{
     @Override
     public List<String> getArgs(Player player, String[] args) {
         if (args.length == 2) {
-            ArrayList<String> changeTypes = new ArrayList<String>();
+            ArrayList<String> changeTypes = new ArrayList<>();
             changeTypes.add("static");
             changeTypes.add("gradient");
             changeTypes.add("segment");
@@ -80,8 +76,7 @@ public class ChatColorSub extends SubCommand{
         }
         if (args[1].equals("gradient")) {
             if (args.length <= 4) {
-                List<String> keys = new ArrayList<>(ColoredName.customHexCodes.keySet());
-                return keys;
+                return new ArrayList<>(ColoredName.customHexCodes.keySet());
             }
         }
         if (args[1].equals("segment")) {
@@ -95,8 +90,7 @@ public class ChatColorSub extends SubCommand{
                 return range;
             }
             if (args.length <= (Integer.parseInt(args[2]) + 3)) {
-                List<String> keys = new ArrayList<>(ColoredName.customHexCodes.keySet());
-                return keys;
+                return new ArrayList<>(ColoredName.customHexCodes.keySet());
             }
         }
         return null;

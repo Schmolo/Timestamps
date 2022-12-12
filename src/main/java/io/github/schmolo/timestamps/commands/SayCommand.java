@@ -33,7 +33,7 @@ public class SayCommand implements TabExecutor {
 
             String msg = ChatColor.WHITE + String.join(" ", Arrays.copyOfRange(args, 0, args.length));
 
-            String sendername = null;
+            String sendername;
 
             if (!(sender instanceof Player)) {
 
@@ -43,7 +43,6 @@ public class SayCommand implements TabExecutor {
 
                 Player player = (Player) sender;
 
-                // Fix i think
                 if(playerNameHelper.getName(player.getUniqueId().toString()) != null) {
                     sendername = playerNameHelper.getName(player.getUniqueId().toString());
                 } else {
@@ -64,9 +63,7 @@ public class SayCommand implements TabExecutor {
 
         if (args.length > 0) {
 
-            List<String> arguments = new ArrayList<>();
-
-            return arguments;
+            return new ArrayList<>();
         }
 
         return null;

@@ -28,7 +28,7 @@ public class CommandManager implements TabExecutor {
                         getSubCommands().get(i).perform(player, args);
                     }
                 }
-            } else if (args.length == 0) {
+            } else {
                 player.sendMessage("--------------------------------------");
                 player.sendMessage("/ts commands:");
                 for (int i = 0; i < getSubCommands().size(); i++) {

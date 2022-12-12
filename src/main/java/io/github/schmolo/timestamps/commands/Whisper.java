@@ -39,7 +39,7 @@ public class Whisper implements TabExecutor {
 
             String msg = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 
-            String whispersmsg = null;
+            String whispersmsg;
 
             if (!(sender instanceof Player)) {
 
@@ -117,9 +117,7 @@ public class Whisper implements TabExecutor {
 
             } else if (args.length >= 2) {
 
-                List<String> arguments = new ArrayList<>();
-
-                return arguments;
+                return new ArrayList<>();
             }
             return null;
         }
