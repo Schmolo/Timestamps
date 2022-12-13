@@ -45,7 +45,8 @@ public class SuffixSub extends SubCommand{
         //playerNameHelper.playernames.replace(playeruuid, playersname);
 
         playerNameHelper.updateNames();
-
+        String newName = playerNameHelper.getFullName(playeruuid);
+        player.setPlayerListName(newName);
     }
 
     @Override
