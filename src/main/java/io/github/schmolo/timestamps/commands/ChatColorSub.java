@@ -57,7 +57,7 @@ public class ChatColorSub extends SubCommand{
             playerNameHelper.addName(uuid, segmentedName);
         }
         playerNameHelper.updateNames();
-        String newName = playerNameHelper.getName(uuid);
+        String newName = playerNameHelper.getFullName(uuid);
         player.setPlayerListName(newName);
     }
 
