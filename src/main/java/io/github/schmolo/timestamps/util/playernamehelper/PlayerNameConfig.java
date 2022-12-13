@@ -2,6 +2,8 @@ package io.github.schmolo.timestamps.util.playernamehelper;
 
 import java.util.List;
 
+import static io.github.schmolo.timestamps.util.TimsLib.PrintDebug;
+
 public class PlayerNameConfig {
 
     public String uuid;
@@ -9,6 +11,8 @@ public class PlayerNameConfig {
     public String color;
     public Gradient gradient;
     public List<Segment> segments;
+    public Affix prefix;
+    public Affix suffix;
 
     public PlayerNameConfig() {
 
@@ -34,6 +38,14 @@ public class PlayerNameConfig {
         this.color = color;
     }
 
+    public void setPrefix(Affix prefix) {
+        this.prefix = prefix;
+    }
+
+    public void setSuffix(Affix suffix) {
+        this.suffix = suffix;
+    }
+
     public void bruhColoredName(ColoredName bruh) {
         if (bruh.getClass() == SingleName.class) {
             SingleName yeah = (SingleName) bruh;
@@ -51,14 +63,22 @@ public class PlayerNameConfig {
     }
 
 
-    public ColoredName getColoredName() {
+    public ColoredName getColoredName(Affix prefix, Affix suffix) {
+        PrintDebug("In the getColoredName method");
 
+        // TODO: HOLY SHIT DRY THE FUCK OUT OF THESE CONSTRUCTORS PLEASE FOR THE LOVE OF GOD
         if(this.color != null) {
-            return new SingleName(this.name, this.color);
+            SingleName temp = new SingleName(this.name, this.color, prefix, suffix);
+            PrintDebug("The SingleName is " + temp);
+            return temp;
         } else if(this.gradient != null) {
-            return new GradientName(this.name, this.gradient);
+            GradientName temp = new GradientName(this.name, this.gradient, prefix, suffix);
+            PrintDebug("The GradientName is " + temp);
+            return temp;
         } else if (this.segments != null) {
-            return new SegmentedName(this.name, this.segments);
+            SegmentedName temp = new SegmentedName(this.name, this.segments, prefix, suffix);
+            PrintDebug("The SegmentedName is " + temp);
+            return temp;
         }
 
         return null;
@@ -72,6 +92,8 @@ public class PlayerNameConfig {
                 ", color='" + color + '\'' +
                 ", gradient=" + gradient +
                 ", segments=" + segments +
+                ", prefix=" + prefix +
+                ", suffix=" + suffix +
                 '}';
     }
 }

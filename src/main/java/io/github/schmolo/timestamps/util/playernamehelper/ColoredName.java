@@ -8,6 +8,8 @@ import java.util.HashMap;
 // A Base Class only used for Polymorphism and helper functions
 public class ColoredName {
     String name;
+    Affix prefix;
+    Affix suffix;
 
     public static HashMap<String, String> customHexCodes;
     static {
@@ -35,6 +37,12 @@ public class ColoredName {
     public ColoredName(String name) {
         this.name = name;
 
+    }
+
+    public ColoredName(String name, Affix prefix, Affix suffix) {
+        this.name = name;
+        this.prefix = prefix;
+        this.suffix = suffix;
     }
 
 
@@ -67,5 +75,30 @@ public class ColoredName {
         }
 
         return gradientName;
+    }
+
+    public Affix getPrefix() {
+        return this.prefix;
+    }
+
+    public Affix getSuffix() {
+        return this.suffix;
+    }
+
+    public void setPrefix(String prefixname, String prefixcolor) {
+        this.prefix = new Affix(prefixname, prefixcolor);
+    }
+
+    public void setSuffix(String suffixname, String suffixcolor) {
+        this.suffix = new Affix(suffixname, suffixcolor);
+    }
+
+    @Override
+    public String toString() {
+        return "ColoredName{" +
+                "name='" + name + '\'' +
+                ", prefix=" + prefix +
+                ", suffix=" + suffix +
+                '}';
     }
 }

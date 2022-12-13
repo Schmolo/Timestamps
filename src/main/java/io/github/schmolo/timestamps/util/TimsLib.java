@@ -16,7 +16,7 @@ public class TimsLib {
 
     public static void PrintDebug(String message) {
         if (debug_mode) {
-            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "[TimeStamps] " + message);
+            getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "[TimeStamps DEBUG] " + message);
         }
 
     }

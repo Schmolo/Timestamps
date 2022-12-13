@@ -25,7 +25,8 @@ public class PlayerNameHelper {
 
     // and that just spits out the correct name for that Person
 
-
+    // Key: PlayerUUID  Value: ColoredName of the Player
+    public HashMap<String, ColoredName> playernames = new HashMap<>();
 
     // This is for the Singleton Pattern
     // so that only one list of Player Names can exist at one time
@@ -91,6 +92,7 @@ public class PlayerNameHelper {
             // Reads the Yaml into a List<PlayerNameConfig>
             Yaml yaml = new Yaml(new Constructor(List.class));
             List<LinkedHashMap<String, Object>> data = yaml.load(inputStream);
+            PrintDebug("The Data is " + data);
 
             PrintDebug("Success");
             // Adds the data into the playerNameHelper class
@@ -130,6 +132,9 @@ public class PlayerNameHelper {
             temp.setUUID(uuid);
             temp.setName(ChatColor.stripColor(currname.getName()));
             temp.bruhColoredName(currname);
+            // TODO: figure this bullshit out
+            temp.setPrefix(currname.getPrefix());
+            temp.setSuffix(currname.getSuffix());
 
             bruh.add(temp);
         }
@@ -149,23 +154,21 @@ public class PlayerNameHelper {
     // Creates the List of PlayerNameConfig from the Hashmap
     public void add(List<LinkedHashMap<String, Object>> nameConfigs) {
 
-        List<PlayerNameConfig> newNameConfigs = new ArrayList<>();
+        PrintDebug("the fucked up list is " + nameConfigs);
         ObjectMapper mapped = new ObjectMapper();
 
         for (LinkedHashMap<String, Object> yeah : nameConfigs) {
+            PrintDebug("Each of the json shit is " + yeah);
             PlayerNameConfig p = mapped.convertValue(yeah, PlayerNameConfig.class);
-            newNameConfigs.add(p);
-        }
+            PrintDebug("The PlayerNameConfig for that json is " + p);
 
-        for (PlayerNameConfig p : newNameConfigs) {
             String uuid = p.uuid;
 
-            addName(uuid, p.getColoredName());
+            addName(uuid, p.getColoredName(p.prefix, p.suffix));
         }
     }
 
-    // Key: PlayerUUID  Value: ColoredName of the Player
-    private HashMap<String, ColoredName> playernames = new HashMap<>();
+
 
     public void addName(String player, ColoredName name) {
         if (name != null) {
@@ -176,6 +179,33 @@ public class PlayerNameHelper {
     public String getName(String uuid) {
         if(playernames.isEmpty()) return null;
         return playernames.get(uuid).getName();
+    }
+
+    public ColoredName getColoredName(String uuid) {
+        return playernames.get(uuid);
+    }
+
+    public String getFullName(String uuid) {
+
+        ColoredName currentName = playernames.get(uuid);
+        PrintDebug("CurrentName is " + currentName);
+
+        String prefixname = "";
+        if (currentName.getPrefix() != null) {
+            PrintDebug("Prefix is not null");
+            prefixname = currentName.getPrefix().getName() + " ";
+        }
+        String suffixname = "";
+        if (currentName.getSuffix() != null) {
+            PrintDebug("Suffix is not null");
+            suffixname = " " + currentName.getSuffix().getName();
+        }
+
+        return prefixname + getName(uuid) + suffixname;
+    }
+
+    public void updateName(String playeruuid, ColoredName playersname) {
+        playernames.replace(playeruuid, playersname);
     }
 }
 

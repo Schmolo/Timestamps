@@ -37,8 +37,8 @@ public class PlayerChatEvent implements Listener {
         playername = ChatColor.WHITE + event.getPlayer().getDisplayName();
 
 
-        if(playerNameHelper.getName(playeruuid) != null) {
-            playername = playerNameHelper.getName(playeruuid);
+        if(playerNameHelper.getFullName(playeruuid) != null) {
+            playername = playerNameHelper.getFullName(playeruuid);
         }
 
         //event.setFormat(time + playername + colon + message);

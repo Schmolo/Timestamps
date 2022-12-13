@@ -43,8 +43,8 @@ public class SayCommand implements TabExecutor {
 
                 Player player = (Player) sender;
 
-                if(playerNameHelper.getName(player.getUniqueId().toString()) != null) {
-                    sendername = playerNameHelper.getName(player.getUniqueId().toString());
+                if(playerNameHelper.getFullName(player.getUniqueId().toString()) != null) {
+                    sendername = playerNameHelper.getFullName(player.getUniqueId().toString());
                 } else {
                     sendername = ChatColor.WHITE + sender.getName();
                 }
