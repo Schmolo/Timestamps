@@ -10,7 +10,11 @@ Chat Plugin for Spigot
 ### Usage:
 ```
   /ts : Gives you all available commands and how to use them
+  
   /ts chatcolor static <color>                                          (/ts chatcolor static gold)
   /ts chatcolor gradient <start_color> <end_color>                      (/ts chatcolor gradient gold white)
   /ts chatcolor segment <number_segments> <for number_segments color>   (/ts charcolor segment 3 gold white black)
+  
+  /ts prefix <prefix_text> <color>                                      (/ts prefix Sample gold)
+  /ts suffix <prefix_text> <color>                                      (/ts suffix Sample gold)
 ```
