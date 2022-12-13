@@ -15,6 +15,7 @@ public class CommandManager implements TabExecutor {
     public CommandManager(){
         subCommands.add(new ChatColorSub());
         subCommands.add(new PrefixSub());
+        subCommands.add(new SuffixSub());
     }
 
     @Override
