@@ -1,3 +1,4 @@
+# WIP
 **This is not intended for public Servers**
 ## Timestamps
 Chat Plugin for Spigot 
@@ -16,5 +17,7 @@ Chat Plugin for Spigot
   /ts chatcolor segment <number_segments> <for number_segments color>   (/ts charcolor segment 3 gold white black)
   
   /ts prefix <prefix_text> <color>                                      (/ts prefix Sample gold)
+  /ts prefix clear
   /ts suffix <prefix_text> <color>                                      (/ts suffix Sample gold)
+  /ts suffix clear
 ```
