@@ -1,10 +1,10 @@
 package io.github.schmolo.timestamps.commands;
 
-import io.github.schmolo.timestamps.util.playernamehelper.ColoredName;
 import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+
 
 import static io.github.schmolo.timestamps.util.TimsLib.PrintDebug;
 
@@ -21,7 +21,7 @@ public class SuffixSub extends SubCommand{
 
     @Override
     public String getUsage() {
-        return "/ts prefix <suffix> <color>";
+        return "/ts suffix <suffix> <color>";
     }
 
     @Override
@@ -34,17 +34,13 @@ public class SuffixSub extends SubCommand{
         }
 
         String suffixname = args[1];
-        String suffixcolor = args[2];
+        String suffixcolor = null;
+        if (args.length > 3) suffixcolor = args[2].toLowerCase();
 
         String playeruuid = player.getUniqueId().toString();
 
-        ColoredName playersname = playerNameHelper.getColoredName(playeruuid);
+        playerNameHelper.applySuffix(playeruuid, suffixname, suffixcolor);
 
-        playersname.setSuffix(suffixname, suffixcolor);
-        playerNameHelper.updateName(playeruuid, playersname);
-        //playerNameHelper.playernames.replace(playeruuid, playersname);
-
-        playerNameHelper.updateNames();
         String newName = playerNameHelper.getFullName(playeruuid);
         player.setPlayerListName(newName);
     }

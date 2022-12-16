@@ -14,23 +14,38 @@ public class ColoredName {
     public static HashMap<String, String> customHexCodes;
     static {
         customHexCodes = new HashMap<>();
-        customHexCodes.put("black", "#000000");
-        customHexCodes.put("dark_blue", "#0000aa");
-        customHexCodes.put("dark_green", "#00aa00");
-        customHexCodes.put("dark_aqua", "#00aaaa");
-        customHexCodes.put("dark_red", "#aa0000");
-        customHexCodes.put("dark_purple", "#aa00aa");
-        customHexCodes.put("gold", "#ffaa00");
-        customHexCodes.put("gray", "#aaaaaa");
-        customHexCodes.put("dark_gray", "#555555");
-        customHexCodes.put("blue", "#5555ff");
-        customHexCodes.put("green", "#55ff55");
-        customHexCodes.put("aqua", "#55ffff");
-        customHexCodes.put("red", "#ff5555");
-        customHexCodes.put("light_purple", "#ff55ff");
-        customHexCodes.put("yellow", "#ffff55");
-        customHexCodes.put("white", "#ffffff");
+        customHexCodes.put("red", "#ff0000");
+        customHexCodes.put("vermilion", "#ff4000");
+        customHexCodes.put("orange", "#ff8000");
+        customHexCodes.put("amber", "#ffc000");
+        customHexCodes.put("yellow", "#ffff00");
+        customHexCodes.put("lime", "#c0ff00");
+        customHexCodes.put("charteuse", "#80ff00");
+        customHexCodes.put("harlequin", "#40ff00");
+        customHexCodes.put("green", "#00ff00");
+        customHexCodes.put("erin", "#00ff40");
+        customHexCodes.put("springgreen", "#00ff80");
+        customHexCodes.put("aquamarine", "#00ffc0");
+        customHexCodes.put("cyan", "#00ffff");
+        customHexCodes.put("capri", "#00c0ff");
+        customHexCodes.put("azure", "#0080ff");
+        customHexCodes.put("cerulean", "#0040ff");
+        customHexCodes.put("blue", "#0000ff");
         customHexCodes.put("indigo", "#4000ff");
+        customHexCodes.put("violet", "#8000ff");
+        customHexCodes.put("purple", "#c000ff");
+        customHexCodes.put("magenta", "#ff00ff");
+        customHexCodes.put("cerise", "#ff00c0");
+        customHexCodes.put("rose", "#ff0080");
+        customHexCodes.put("crimson", "#ff0040");
+
+        customHexCodes.put("white", "#ffffff");
+        customHexCodes.put("light_gray", "#c0c0c0");
+        customHexCodes.put("gray", "#808080");
+        customHexCodes.put("dark_gray", "#404040");
+        customHexCodes.put("black", "#000000");
+
+
     }
 
 
@@ -100,5 +115,13 @@ public class ColoredName {
                 ", prefix=" + prefix +
                 ", suffix=" + suffix +
                 '}';
+    }
+
+    public void removePrefix() {
+        this.prefix = null;
+    }
+
+    public void removeSuffix() {
+        this.suffix = null;
     }
 }

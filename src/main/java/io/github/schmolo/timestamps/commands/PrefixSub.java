@@ -1,6 +1,5 @@
 package io.github.schmolo.timestamps.commands;
 
-import io.github.schmolo.timestamps.util.playernamehelper.ColoredName;
 import io.github.schmolo.timestamps.util.playernamehelper.PlayerNameHelper;
 import org.bukkit.entity.Player;
 
@@ -34,17 +33,13 @@ public class PrefixSub extends SubCommand{
         }
 
         String prefixname = args[1];
-        String prefixcolor = args[2];
+        String prefixcolor = null;
+        if (args.length > 2) prefixcolor = args[2].toLowerCase();
 
         String playeruuid = player.getUniqueId().toString();
 
-        ColoredName playersname = playerNameHelper.getColoredName(playeruuid);
+        playerNameHelper.applyPrefix(playeruuid, prefixname, prefixcolor);
 
-        playersname.setPrefix(prefixname, prefixcolor);
-        playerNameHelper.updateName(playeruuid, playersname);
-        //playerNameHelper.playernames.replace(playeruuid, playersname);
-
-        playerNameHelper.updateNames();
         String newName = playerNameHelper.getFullName(playeruuid);
         player.setPlayerListName(newName);
     }

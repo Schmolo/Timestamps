@@ -191,6 +191,7 @@ public class PlayerNameHelper {
         PrintDebug("CurrentName is " + currentName);
 
         String prefixname = "";
+        // TODO: Something is not correctly null checking
         if (currentName.getPrefix() != null) {
             PrintDebug("Prefix is not null");
             prefixname = currentName.getPrefix().getName() + " ";
@@ -206,6 +207,34 @@ public class PlayerNameHelper {
 
     public void updateName(String playeruuid, ColoredName playersname) {
         playernames.replace(playeruuid, playersname);
+    }
+
+    public void applySuffix(String playeruuid, String suffixname, String suffixcolor) {
+        ColoredName playersname = getColoredName(playeruuid);
+
+        if(Objects.equals(suffixname, "clear") | Objects.equals(suffixname, "remove")) {
+            PrintDebug("Removing the suffix");
+            playersname.removeSuffix();
+        } else {
+            PrintDebug("Adding/Changing the suffix");
+            playersname.setSuffix(suffixname, suffixcolor);
+        }
+        updateName(playeruuid, playersname);
+        updateNames();
+    }
+
+    public void applyPrefix(String playeruuid, String prefixname, String prefixcolor) {
+        ColoredName playersname = getColoredName(playeruuid);
+
+        if(Objects.equals(prefixname, "clear") | Objects.equals(prefixname, "remove")) {
+            PrintDebug("Removing the prefix");
+            playersname.removePrefix();
+        } else {
+            PrintDebug("Adding/Changing the prefix");
+            playersname.setPrefix(prefixname, prefixcolor);
+        }
+        updateName(playeruuid, playersname);
+        updateNames();
     }
 }
 
