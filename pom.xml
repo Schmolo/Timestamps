@@ -41,7 +41,7 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\oload\Desktop\test server 1.18.2\plugins/${project.artifactId}.jar</outputFile>
+                            <outputFile>PATH_TO_SERVER_PLUGIN_DIRECTORY/${project.artifactId}.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
